@@ -1,75 +1,249 @@
+stro · HTML
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atypical Lounge — Criar conta</title>
+<style>
+  :root {
+    --bg: #ebe9f5;
+    --card: #ffffff;
+    --ink: #1f1b3d;
+    --muted: #6a6688;
+    --line: #cfcbe6;
+    --accent: #5a3fd6;
+    --accent-dark: #432bb0;
+    --error: #b8324a;
+    --ok: #1f7a5a;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17142b;
+      --card: #211d3d;
+      --ink: #f0eefc;
+      --muted: #a9a4cc;
+      --line: #3c3763;
+      --accent: #8f78ff;
+      --accent-dark: #a893ff;
+      --error: #ff7a90;
+      --ok: #5fd0a2;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    padding: 2rem 1rem 3rem;
+    background: var(--bg);
+    color: var(--ink);
+    font: 1rem/1.5 "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  h1 {
+    max-width: 34rem;
+    margin: 0 auto 1.5rem;
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
+  form, #result {
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+  fieldset {
+    margin: 0 0 1.25rem;
+    padding: 1.25rem 1.25rem .5rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  legend {
+    padding: 0 .5rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--accent);
+  }
+  fieldset > div { margin-bottom: 1rem; }
+  label { font-weight: 600; font-size: .95rem; }
+  input[type="text"], input[type="date"], input[type="tel"],
+  input[type="email"], input[type="password"], select, textarea {
+    width: 100%;
+    margin-top: .3rem;
+    padding: .65rem .8rem;
+    font: inherit;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  ::placeholder { color: var(--muted); opacity: .8; }
+  textarea { min-height: 6rem; resize: vertical; }
+  input:hover, select:hover, textarea:hover { border-color: var(--accent); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible,
+  button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  input:user-invalid, textarea:user-invalid {
+    border-color: var(--error);
+  }
+  /* Checkbox e radio em "chips" */
+  fieldset > div:has(input[type="checkbox"][name="interests"]),
+  fieldset > div:has(input[type="radio"]) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+  fieldset > div:has(input[name="interests"]) > label:first-child,
+  fieldset > div:has(input[type="radio"]) > label:first-child {
+    flex-basis: 100%;
+  }
+  fieldset > div:has(input[name="interests"]) br,
+  fieldset > div:has(input[type="radio"]) br { display: none; }
+  label:has(input[name="interests"]),
+  label:has(input[name="visibility"]) {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .35rem .8rem;
+    font-weight: 500;
+    background: var(--bg);
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  label:has(input:checked[name="interests"]),
+  label:has(input:checked[name="visibility"]) {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+  input[type="checkbox"], input[type="radio"] {
+    width: 1.05rem;
+    height: 1.05rem;
+    margin: 0;
+    accent-color: var(--accent);
+  }
+  label:has(#terms) {
+    display: flex;
+    align-items: flex-start;
+    gap: .5rem;
+    font-weight: 500;
+  }
+  button[type="submit"] {
+    width: 100%;
+    padding: .85rem 1rem;
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border: 0;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background .15s;
+  }
+  button[type="submit"]:hover { background: var(--accent-dark); }
+  button[type="submit"]:disabled { opacity: .6; cursor: progress; }
+  #status {
+    min-height: 1.5rem;
+    margin-top: .75rem;
+    font-weight: 600;
+  }
+  #status a { color: var(--accent); }
+  #result {
+    margin-top: 1.75rem;
+    padding: 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  #result p { margin: 0 0 1rem; color: var(--muted); }
+  pre {
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+    font: .85rem/1.5 ui-monospace, "Cascadia Code", Consolas, monospace;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  @media (max-width: 480px) {
+    body { padding: 1rem .75rem 2rem; }
+    fieldset { padding: 1rem 1rem .25rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
 </head>
 <body>
-
+ 
 <h1>Criar conta no Atypical Lounge</h1>
-
+ 
 <form id="signup-form" action="https://postman-echo.com/post" method="post">
-
+ 
   <fieldset>
     <legend>Dados pessoais</legend>
-
+ 
     <div>
       <label for="fullname">Nome completo *</label><br>
       <input type="text" id="fullname" name="fullname" placeholder="Ex: Marlon Faria Kussano" required minlength="3">
     </div>
-
+ 
     <div>
-      <label for="birthdate">Data de nascimento</label><br>
+      <label for="birthdate">Data de nascimento *</label><br>
       <input type="date" id="birthdate" name="birthdate" required>
     </div>
-
+ 
     <div>
       <label for="phone">Telefone (com DDD)</label><br>
       <input type="tel" id="phone" name="phone" placeholder="(41) 91234-5678"
              pattern="^\(\d{2}\)\s?\d{4,5}-\d{4}$">
     </div>
-
+ 
     <div>
       <label for="city">Cidade</label><br>
       <input type="text" id="city" name="city" placeholder="Ex: Assaí, PR">
     </div>
   </fieldset>
-
+ 
   <fieldset>
     <legend>Acesso</legend>
-
+ 
     <div>
       <label for="username">Nome de usuário * (letras, números e _)</label><br>
       <input type="text" id="username" name="username" placeholder="Ex: ana_bs"
              pattern="^[a-zA-Z0-9_]{4,16}$" required>
     </div>
-
+ 
     <div>
       <label for="email">E-mail *</label><br>
       <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
     </div>
-
+ 
     <div>
       <label for="password">Senha * (mín. 8 caracteres, com letra e número)</label><br>
       <input type="password" id="password" name="password" placeholder="Mín. 8 caracteres"
              pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$" required>
     </div>
-
+ 
     <div>
       <label for="password2">Confirmar senha *</label><br>
       <input type="password" id="password2" name="password2" placeholder="Repita a senha" required>
     </div>
   </fieldset>
-
+ 
   <fieldset>
     <legend>Perfil</legend>
-
+ 
     <div>
       <label for="bio">Bio</label><br>
       <textarea id="bio" name="bio" placeholder="Conte um pouco sobre você..." maxlength="200"></textarea>
     </div>
-
+ 
     <div>
       <label for="pronoun">Pronome</label><br>
       <select id="pronoun" name="pronoun">
@@ -80,7 +254,7 @@
         <option value="outro">Outro</option>
       </select>
     </div>
-
+ 
     <div>
       <label>Interesses</label><br>
       <label><input type="checkbox" name="interests" value="tecnologia"> Tecnologia</label>
@@ -89,14 +263,14 @@
       <label><input type="checkbox" name="interests" value="musica"> Música</label>
       <label><input type="checkbox" name="interests" value="bem-estar"> Bem-estar</label>
     </div>
-
+ 
     <div>
       <label>Visibilidade do perfil</label><br>
       <label><input type="radio" name="visibility" value="publico" checked> Público</label>
       <label><input type="radio" name="visibility" value="amigos"> Só amigos</label>
       <label><input type="radio" name="visibility" value="privado"> Privado</label>
     </div>
-
+ 
     <div>
       <label>
         <input type="checkbox" id="terms" name="terms" value="aceito" required>
@@ -104,51 +278,54 @@
       </label>
     </div>
   </fieldset>
-
+ 
   <button type="submit">Criar conta</button>
-  <div id="status"></div>
+  <div id="status" role="status" aria-live="polite"></div>
 </form>
-
+ 
 <div id="result" style="display:none;">
   <h2>Resposta do servidor (Postman Echo)</h2>
   <p>JSON devolvido pelo endpoint — os mesmos dados enviados aparecem no campo "json".</p>
   <pre id="response-json"></pre>
 </div>
-
+ 
 <script>
 const form = document.getElementById('signup-form');
 const statusEl = document.getElementById('status');
 const resultBox = document.getElementById('result');
 const responseJsonEl = document.getElementById('response-json');
-
+ 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   statusEl.textContent = '';
-
+  statusEl.style.color = '';
+ 
   const password = document.getElementById('password').value;
   const password2 = document.getElementById('password2').value;
   if (password !== password2) {
+    statusEl.style.color = 'var(--error)';
     statusEl.textContent = 'As senhas não coincidem.';
     return;
   }
-
+ 
   const submitBtn = form.querySelector('button[type=submit]');
   submitBtn.disabled = true;
   statusEl.textContent = 'Enviando...';
-
+ 
   const formData = new FormData(form);
-
+ 
   try {
     const response = await fetch(form.action, {
       method: 'POST',
       body: formData
     });
     const data = await response.json();
-
+ 
     responseJsonEl.textContent = JSON.stringify(data, null, 2);
     resultBox.style.display = 'block';
+    statusEl.style.color = 'var(--ok)';
     statusEl.textContent = 'Status ' + response.status + ' — conta simulada com sucesso.';
-
+ 
     // Salva o JSON da resposta em disco, para anexar como entregável
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -158,14 +335,16 @@ form.addEventListener('submit', async (e) => {
     a.textContent = 'Baixar JSON da resposta';
     statusEl.appendChild(document.createElement('br'));
     statusEl.appendChild(a);
-
+ 
   } catch (err) {
+    statusEl.style.color = 'var(--error)';
     statusEl.textContent = 'Erro ao enviar: ' + err.message;
   } finally {
     submitBtn.disabled = false;
   }
 });
 </script>
-
+ 
 </body>
 </html>
+ 
