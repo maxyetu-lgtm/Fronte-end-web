@@ -1,0 +1,38 @@
+{
+  "args": {},
+  "data": {},
+  "files": {},
+  "form": {
+    "fullname": "marlon faria kussano",
+    "birthdate": "1983-11-05",
+    "phone": "(43)99165-7550",
+    "city": "londrina",
+    "username": "marlon",
+    "email": "marlonfariakussano@hotmailcom",
+    "password": "Mp051183",
+    "password2": "Mp051183",
+    "bio": "sou um n",
+    "pronoun": "",
+    "visibility": "publico",
+    "terms": "aceito"
+  },
+  "headers": {
+    "host": "postman-echo.com",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "priority": "u=1, i",
+    "accept-language": "pt-BR",
+    "accept-encoding": "gzip, br",
+    "content-length": "1293",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.128.0 Chrome/148.0.7778.271 Electron/42.5.0 Safari/537.36",
+    "sec-ch-ua": "\"Not/A)Brand\";v=\"99\", \"Chromium\";v=\"148\"",
+    "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryNUZYyCCfoo2AQF6x",
+    "sec-ch-ua-mobile": "?0",
+    "accept": "*/*",
+    "sec-fetch-site": "cross-site",
+    "x-forwarded-proto": "https"
+  },
+  "json": null,
+  "url": "https://postman-echo.com/post"
+}
