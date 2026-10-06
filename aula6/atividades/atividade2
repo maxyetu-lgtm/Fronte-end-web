@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplos de display</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Exemplos de display</h1>
+
+    <section>
+      <h2>display: block</h2>
+      <p>Ocupa a linha inteira e quebra linha antes e depois.</p>
+      <div class="caixa bloco">Bloco 1</div>
+      <div class="caixa bloco">Bloco 2</div>
+      <div class="caixa bloco">Bloco 3</div>
+    </section>
+
+    <section>
+      <h2>display: inline</h2>
+      <p>Fica na mesma linha. Ignora width, height e margin vertical.</p>
+      <span class="caixa em-linha">Inline 1</span>
+      <span class="caixa em-linha">Inline 2</span>
+      <span class="caixa em-linha">Inline 3</span>
+    </section>
+
+    <section>
+      <h2>display: inline-block</h2>
+      <p>Fica na mesma linha, mas aceita width, height e margin.</p>
+      <div class="caixa linha-bloco">Item 1</div>
+      <div class="caixa linha-bloco">Item 2</div>
+      <div class="caixa linha-bloco">Item 3</div>
+    </section>
+
+    <section>
+      <h2>display: none</h2>
+      <p>O elemento abaixo existe no HTML, mas não aparece na tela.</p>
+      <div class="caixa escondido">Você não me vê!</div>
+      <p>Este parágrafo ocupa o lugar como se a caixa não existisse.</p>
+    </section>
+
+    <section>
+      <h2>display: flex</h2>
+      <p>Organiza os itens em uma linha com alinhamento fácil.</p>
+      <div class="container-flex">
+        <div class="caixa">Flex 1</div>
+        <div class="caixa">Flex 2</div>
+        <div class="caixa">Flex 3</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>display: grid</h2>
+      <p>Organiza os itens em linhas e colunas ao mesmo tempo.</p>
+      <div class="container-grid">
+        <div class="caixa">Grid 1</div>
+        <div class="caixa">Grid 2</div>
+        <div class="caixa">Grid 3</div>
+        <div class="caixa">Grid 4</div>
+        <div class="caixa">Grid 5</div>
+        <div class="caixa">Grid 6</div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
